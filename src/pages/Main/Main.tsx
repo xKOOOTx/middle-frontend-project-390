@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { SearchForm } from "../../components/SearchForm"
 import type { City, Flight, SearchFlightParams } from "../../types"
 import { getCities, searchFlights } from "../../api"
+import { Card } from "../../components/Card"
 
 export const MainPage = () => {
     
@@ -11,10 +13,8 @@ export const MainPage = () => {
     const [loadingFlights, setLoadingFlights] = useState(false)
     const [currentPassengers, setCurrentPassengers] = useState(1)
 
-    useEffect(() => {
-        console.log(flights)
-        console.log(currentPassengers)
-    },[])
+    const navigate = useNavigate()
+    
     useEffect(() => {
         getCities()
         .then(setCities)
@@ -40,15 +40,27 @@ export const MainPage = () => {
         }
     }
 
+    const handleSelectFlight = (flightId: string) => {
+        navigate(`/booking?flightId=${flightId}&passengers=${currentPassengers}`)
+    }
+
     if (loadingCities) {
         return <div className="p-6 text-center text-gray-500">Загрузка интерфейса...</div>;
     }
 
     return (
-        <div>
+        <div className="space-y-4">
             <SearchForm cities={cities} onSearch={handleSearch} />
-            Главная страница
-            {loadingFlights && (<div>Загрузка...</div>)}
+            {loadingFlights ? 
+                (<div>Загрузка...</div>) : 
+                (
+                    <div className="space-y-4">
+                        {flights.map(flight => (
+                            <Card key={flight.id} flight={flight} passengersCount={currentPassengers} onSelect={handleSelectFlight} />
+                        ))}
+                    </div>
+                )
+            }
         </div>
     )
 }
