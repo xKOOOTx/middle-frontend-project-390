@@ -12,6 +12,10 @@ export const MainPage = () => {
     const [currentPassengers, setCurrentPassengers] = useState(1)
 
     useEffect(() => {
+        console.log(flights)
+        console.log(currentPassengers)
+    },[])
+    useEffect(() => {
         getCities()
         .then(setCities)
         .catch(console.error)

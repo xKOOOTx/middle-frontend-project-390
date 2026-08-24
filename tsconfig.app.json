@@ -22,5 +22,9 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "playwright.config.ts"]
+  "include": ["src"],
+  "exclude": [
+    "src/tests/**/*",
+    "playwright.config.ts"
+  ]
 }
