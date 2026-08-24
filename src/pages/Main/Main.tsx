@@ -71,7 +71,7 @@ export const MainPage = () => {
     }
 
     const handleSelectFlight = (flightId: string) => {
-        navigate(`/booking?${flightId}`, { state: { passengers: currentPassengers } })
+        navigate(`/booking/${flightId}`, { state: { passengers: currentPassengers } })
     }
 
     if (loadingCities) {

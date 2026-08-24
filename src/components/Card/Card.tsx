@@ -13,6 +13,10 @@ export const Card = ({flight, passengersCount, onSelect}: FlightCardProps) => {
         dateStyle: 'short',
         timeStyle: 'short',
     });
+    const arrivalDate = new Date(flight.arrivalAt).toLocaleString('ru-RU', {
+        dateStyle: 'short',
+        timeStyle: 'short'
+    })
 
     return (
         <div data-testid="flight-result-item" className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:shadow-md transition-shadow">
@@ -40,7 +44,7 @@ export const Card = ({flight, passengersCount, onSelect}: FlightCardProps) => {
                 
                 {/* Дополнительная инфа */}
                 <div className="text-xs text-gray-400">
-                    Вылет: {departureDate} | В пути: {flight.durationMinutes} мин.
+                    Вылет: {departureDate} | Время прибития: {arrivalDate} | В пути: {flight.durationMinutes} мин.
                 </div>
             </div>
 
