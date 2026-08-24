@@ -142,7 +142,7 @@ export const BookingPage = () => {
                 <span>Куда: <strong>{flight.destination.name} ({flight.destination.code})</strong></span>
                 </div>
                 <div className="text-xs text-blue-600">
-                    Вылет: {new Date(flight.departureAt).toLocaleString('ru-RU')} | Время прилета: {new Date(flight.arrivalAt).toLocaleString('ru-RU')} | Стоимость билета: <b>{flight.price.amount} {flight.price.currency}</b>
+                    Вылет: {new Date(flight.departureAt).toLocaleString('ru-RU')} | Время прибытия: {new Date(flight.arrivalAt).toLocaleString('ru-RU')} | Стоимость билета: <b>{flight.price.amount} {flight.price.currency}</b>
                 </div>
             </div>
 
