@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: 'main'
+  pull_request:
+    branches: 'main'
+
+jobs:
+  test:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v7
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v3
+      with:
+        version: 9
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Install Playwright Browsers
+      run: pnpm exec playwright install --with-deps chromium
+
+    - name: Build frontend
+      run: make build
+
+    - name: Start Dev Server in background
+      # Запускаем Vite в фоновом режиме, чтобы тесты могли к нему достучаться
+      run: pnpm run dev & 
+      
+    - name: Run Playwright Tests
+      # Передаем адрес, дожидаемся запуска и прогоняем созданный make test
+      run: |
+        sleep 3 #ждем пока dev поднимется
+        APP_URL=http://localhost:5173 make test

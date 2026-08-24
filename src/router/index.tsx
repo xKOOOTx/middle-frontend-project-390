@@ -8,7 +8,9 @@ const RootLayout = () => {
         <div className="min-h-screen bg-gray-50 text-gray-900">
             <header className="bg-white border-b border-gray-200 p-4">
                 <div className="max-w-6xl mx-auto flex gap-6 items-center">
-                    <Link to='/' className='text-xl font-bold mr-4 text-blue-600'>Бронирование авиабилетов</Link>
+                    <Link to='/' className='text-xl font-bold mr-4 text-blue-600'>
+                        <h1>Бронирование авиабилетов</h1>
+                    </Link>
                     <nav className='flex gap-4'>
                         <Link to='/' className='text-blue-500 hover:underline'>Поиск рейсов</Link>
                         <Link to='/booking' className='text-blue-500 hover:underline'>Мои брони</Link>
