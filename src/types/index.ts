@@ -46,3 +46,9 @@ export interface Passenger {
     dateOfBirth: string
     documentNumber: string
 }
+
+export interface SearchFlightParams {
+    origin: string,
+    destination: string,
+    date: string,
+}

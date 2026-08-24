@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { Input } from "../Input"
-import type { City } from "../../types";
+import type { City, SearchFlightParams } from "../../types";
 
 interface SearchFormParams {
     cities: City[]
-    onSearch: (params: {origin: string, destination: string, date: string, passengers: number}) => void
+    onSearch: (params: SearchFlightParams & { passengers: number}) => void
 }
 
 export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
@@ -30,12 +30,13 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
             onSubmit={handleSubmit}
         >
             <div className="flex-1">
-                <label htmlFor="origin-select" className="block text-sm font-medium text-gray-700 mb-1">Откуда</label>
+                <label htmlFor="origin-select" className="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Откуда</label>
                 <select 
                     id="origin-select"
                     className="w-full border border-gray-300 rounded-lg p-2 bg-gray-50"
                     value={origin}
                     onChange={(e) => setOrigin(e.target.value)}
+                    required
                 >
                     <option value=''>Выберите город</option>
                     {cities.map(city => (
@@ -44,12 +45,13 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
                 </select>
             </div>
             <div className="flex-1">
-                <label htmlFor="destination-select" className="block text-sm font-medium text-gray-700 mb-1">Куда</label>
+                <label htmlFor="destination-select" className="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Куда</label>
                 <select
                     id="destination-select"
                     className="w-full border border-gray-300 rounded-lg p-2 bg-gray-50"
                     value={destination}
                     onChange={(e) => setDestination(e.target.value)}
+                    required
                 >
                     <option value="">Выберите город</option>
                     {cities
@@ -61,22 +63,25 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
             </div>
             
             <div className="flex-1">
-                <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Дата</label>
+                <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Дата</label>
                 <Input
                     id="date"
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
+                    required
                 />
             </div>
             <div className="flex-1">
-                <label htmlFor="passengers" className="block text-sm font-medium text-gray-700 mb-1">Пассажиры</label>
+                <label htmlFor="passengers" className="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Пассажиры</label>
                 <Input
                     id="passengers"
                     type="number"
                     value={passengers}
                     onChange={(e) => setPassengers(Number(e.target.value))}
-                    min={0}/>
+                    min={0}
+                    required
+                    />
             </div>
             <div className="flex items-end">
                 <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium w-full h-10.5">
