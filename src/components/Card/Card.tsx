@@ -15,7 +15,7 @@ export const Card = ({flight, passengersCount, onSelect}: FlightCardProps) => {
     });
 
     return (
-        <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:shadow-md transition-shadow">
+        <div data-testid="flight-result-item" className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:shadow-md transition-shadow">
             <div className="space-y-2">
                 {/* Авиакомпания и номер рейса */}
                 <div className="flex items-center gap-3">
@@ -58,11 +58,12 @@ export const Card = ({flight, passengersCount, onSelect}: FlightCardProps) => {
                     </div>
                 </div>
                 
-                <button 
+                <button
+                    data-testid="book-flight"
                     onClick={() => onSelect(flight.id)}
                     className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-5 py-2 rounded-lg transition-colors cursor-pointer w-full md:w-auto text-center"
                 >
-                    Выбрать
+                    Забронировать
                 </button>
             </div>
         </div>

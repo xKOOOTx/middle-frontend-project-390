@@ -9,9 +9,11 @@ interface SearchFormParams {
 
 export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
 
-    const [origin, setOrigin] = useState('')
-    const [destination, setDestination] = useState('');
-    const [date, setDate] = useState('');
+    const today = new Date().toISOString().split('T')[0];
+
+    const [origin, setOrigin] = useState('MOW')
+    const [destination, setDestination] = useState('LED');
+    const [date, setDate] = useState(today);
     const [passengers, setPassengers] = useState(1);
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -25,7 +27,8 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
     };
 
     return (
-        <form 
+        <form
+            data-testid="flight-search-form"
             className="flex flex-col md:flex-row gap-4 bg-white p-6 rounded-xl shadow-sm border border-gray-200"
             onSubmit={handleSubmit}
         >
@@ -33,6 +36,7 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
                 <label htmlFor="origin-select" className="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Откуда</label>
                 <select 
                     id="origin-select"
+                    data-testid="search-origin"
                     className="w-full border border-gray-300 rounded-lg p-2 bg-gray-50"
                     value={origin}
                     onChange={(e) => setOrigin(e.target.value)}
@@ -48,6 +52,7 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
                 <label htmlFor="destination-select" className="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Куда</label>
                 <select
                     id="destination-select"
+                    data-testid="search-destination"
                     className="w-full border border-gray-300 rounded-lg p-2 bg-gray-50"
                     value={destination}
                     onChange={(e) => setDestination(e.target.value)}
@@ -66,6 +71,7 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
                 <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Дата</label>
                 <Input
                     id="date"
+                    data-testid="search-date"
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
@@ -76,15 +82,16 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
                 <label htmlFor="passengers" className="block text-sm font-medium text-gray-700 mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Пассажиры</label>
                 <Input
                     id="passengers"
+                    data-testid="search-passengers"
                     type="number"
                     value={passengers}
                     onChange={(e) => setPassengers(Number(e.target.value))}
-                    min={0}
+                    min={1}
                     required
                     />
             </div>
             <div className="flex items-end">
-                <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium w-full h-10.5">
+                <button data-testid="search-submit" type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium w-full h-10.5">
                     Найти
                 </button>
             </div>

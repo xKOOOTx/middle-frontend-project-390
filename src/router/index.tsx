@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
                 element: <MainPage />
             },
             {
-                path: '/booking',
+                path: '/booking/:id',
                 element: <BookingPage />
             },
             {
