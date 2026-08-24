@@ -44,7 +44,7 @@ export const Card = ({flight, passengersCount, onSelect}: FlightCardProps) => {
                 
                 {/* Дополнительная инфа */}
                 <div className="text-xs text-gray-400">
-                    Вылет: {departureDate} | Время прибития: {arrivalDate} | В пути: {flight.durationMinutes} мин.
+                    Вылет: {departureDate} | Время прибытия: {arrivalDate} | В пути: {flight.durationMinutes} мин.
                 </div>
             </div>
 
