@@ -34,13 +34,17 @@ jobs:
 
     - name: Build frontend
       run: make build
+    
+    - name: Start Prism Mock Server in background
+      # Запускаем фейковый бэкенд на порту 4010 в фоне
+      run: pnpm exec prism mock contract/openapi.yaml &
 
     - name: Start Dev Server in background
       # Запускаем Vite в фоновом режиме, чтобы тесты могли к нему достучаться
       run: pnpm run dev & 
       
     - name: Run Playwright Tests
-      # Передаем адрес, дожидаемся запуска и прогоняем созданный make test
+      # Передаем адрес, дожидаемся запуска фронта и Prism, и прогоняем созданный make test
       run: |
-        sleep 3 #ждем пока dev поднимется
+        sleep 5 #ждем пока dev поднимется
         APP_URL=http://localhost:5173 make test
