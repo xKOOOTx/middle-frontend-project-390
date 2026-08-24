@@ -57,7 +57,7 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
                     {cities
                     .filter((city) => city.code !== origin)
                     .map(city => (
-                        <option value={city.code}>{city.name}</option>
+                        <option key={city.code} value={city.code}>{city.name}</option>
                     ))}
                 </select>
             </div>
