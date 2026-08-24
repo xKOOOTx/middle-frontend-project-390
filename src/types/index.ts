@@ -52,3 +52,12 @@ export interface SearchFlightParams {
     destination: string,
     date: string,
 }
+
+export interface CreateBookingPayload {
+  flightId: string;
+  passengers: Passenger[];
+  contact: {
+    email: string;
+    phone: string;
+  };
+}
