@@ -51,3 +51,28 @@ export const createBooking = async (payload: CreateBookingPayload): Promise<Book
 
   return response.json();
 };
+
+export const getBookingByCode = async (code: string, lastName: string): Promise<Booking> => {
+  const queryParams = new URLSearchParams({ lastName });
+  const response = await fetch(`/api/bookings/${code}?${queryParams.toString()}`);
+  
+  if (!response.ok) {
+    throw new Error(`Бронь не найдена: ${response.status}`);
+  }
+  return response.json();
+};
+
+export const cancelBookingByCode = async (code: string, lastName: string): Promise<Booking> => {
+  const response = await fetch(`/api/bookings/${code}/cancel`, {
+    method: 'POST', // Используем POST строго по спецификации сервера
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({lastName})
+  });
+
+  if (!response.ok) {
+    throw new Error(`Не удалось отменить бронирование: ${response.status}`);
+  }
+  return response.json();
+};

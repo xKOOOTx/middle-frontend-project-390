@@ -1,7 +1,7 @@
 import { createBrowserRouter, Link, Outlet } from 'react-router-dom'
 import { MainPage } from '../pages/Main'
 import { BookingPage } from '../pages/Booking'
-import { CabinetPage } from '../pages/Cabinet'
+import { CabinetPage } from '../pages/Lookup'
 import { NotFound } from '../components/NotFound'
 const RootLayout = () => {
     return (
@@ -13,7 +13,7 @@ const RootLayout = () => {
                     </Link>
                     <nav className='flex gap-4'>
                         <Link to='/' className='text-blue-500 hover:underline'>Поиск рейсов</Link>
-                        <Link to='/booking' className='text-blue-500 hover:underline'>Мои брони</Link>
+                        <Link to='/lookup' data-testid="nav-lookup" className='text-blue-500 hover:underline'>Мои брони</Link>
                     </nav>
                 </div>
             </header>
@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
                 element: <BookingPage />
             },
             {
-                path: '/cabinet',
+                path: '/lookup',
                 element: <CabinetPage />
             },
             {
