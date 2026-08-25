@@ -1,1 +1,6 @@
 packages: []
+
+# @scarf/scarf — телеметрия, тянется как транзитивная зависимость prism-cli.
+# Явно запрещаем её postinstall: иначе pnpm 11 падает с ERR_PNPM_IGNORED_BUILDS.
+allowBuilds:
+  '@scarf/scarf': false
