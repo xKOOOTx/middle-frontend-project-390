@@ -1,5 +1,5 @@
-install: 
-	pnpm install
+install:
+	pnpm install --ignore-workspace
 build:
 	pnpm run build
 test: 
