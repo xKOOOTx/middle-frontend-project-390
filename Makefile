@@ -1,5 +1,5 @@
 install: 
-	pnpm intall
+	pnpm install
 build:
 	pnpm build
 test: 
