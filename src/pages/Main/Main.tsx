@@ -108,6 +108,17 @@ export const MainPage = () => {
                     ))}
                 </div>
             )}
+            <div className="mt-12 pt-6 border-t border-gray-100 flex justify-center">
+                <button
+                    type="button"
+                    onClick={() => {
+                    throw new Error("Тестовая ошибка фронтенда для проверки Bugsink!");
+                    }}
+                    className="text-xs text-gray-400 hover:text-red-500 transition-colors"
+                >
+                    Спровоцировать ошибку прода
+                </button>
+            </div>
         </div>
     )
 }
