@@ -59,9 +59,7 @@ export const SearchForm = ({cities = [], onSearch}: SearchFormParams) => {
                     required
                 >
                     <option value="">Выберите город</option>
-                    {cities
-                    .filter((city) => city.code !== origin)
-                    .map(city => (
+                    {cities.map(city => (
                         <option key={city.code} value={city.code}>{city.name}</option>
                     ))}
                 </select>

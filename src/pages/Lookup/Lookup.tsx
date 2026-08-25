@@ -34,15 +34,15 @@ export const CabinetPage = () => {
 
   const handleCancel = async () => {
     if (!booking) return;
-    if (!window.confirm('Вы действительно хотите отменить это бронирование?')) return;
 
     setIsCancelling(true);
+    setError(null);
     try {
       const updatedBooking = await cancelBookingByCode(booking.code, lastName);
       setBooking(updatedBooking); // Обновляем состояние, сервер вернет статус 'cancelled'
     } catch (err) {
       console.error(err);
-      alert('Не удалось отменить бронирование. Попробуйте позже.');
+      setError('Не удалось отменить бронирование. Попробуйте позже.');
     } finally {
       setIsCancelling(false);
     }
