@@ -43,13 +43,6 @@ export const MainPage = () => {
         initPage();
     }, []);
 
-    useEffect(() => {
-        getCities()
-        .then(setCities)
-        .catch(console.error)
-        .finally(() => setLoadingCities(false))
-    }, [])
-
     const handleSearch = async (params: SearchFlightParams & { passengers: number }) => {
         setLoadingFlights(true)
         setSearchError(null);

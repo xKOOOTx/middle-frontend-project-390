@@ -1,6 +1,10 @@
 [Развернутый проект](https://middle-frontend-project-390-1.onrender.com/)
 # React + TypeScript + Vite
 
+# Запуск проекта
+запуск бэка - npx frontend-flight-booking-server start
+запуск фронта - pnpm run dev / npm run dev
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
