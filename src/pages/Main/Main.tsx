@@ -18,26 +18,26 @@ export const MainPage = () => {
     
     useEffect(() => {
         const initPage = async () => {
-        try {
-            const fetchedCities = await getCities();
-            setCities(fetchedCities);
+            try {
+                const fetchedCities = await getCities();
+                setCities(fetchedCities);
 
-            // Показываем список рейсов сразу при открытии главной (с разумными дефолтами)
-            setLoadingFlights(true);
-            const today = new Date().toISOString().split('T')[0];
-            const defaultFlights = await searchFlights({
-            origin: 'MOW',
-            destination: 'LED',
-            date: today,
-            });
-            setFlights(defaultFlights);
-        } catch (error) {
-            console.error(error);
-            setSearchError('Не удалось загрузить данные. Пожалуйста, обновите страницу.');
-        } finally {
-            setLoadingCities(false);
-            setLoadingFlights(false);
-        }
+                // Показываем список рейсов сразу при открытии главной (с разумными дефолтами)
+                setLoadingFlights(true);
+                const today = new Date().toISOString().split('T')[0];
+                const defaultFlights = await searchFlights({
+                origin: 'MOW',
+                destination: 'LED',
+                date: today,
+                });
+                setFlights(defaultFlights);
+            } catch (error) {
+                console.error(error);
+                setSearchError('Не удалось загрузить данные. Пожалуйста, обновите страницу.');
+            } finally {
+                setLoadingCities(false);
+                setLoadingFlights(false);
+            }
         };
 
         initPage();
